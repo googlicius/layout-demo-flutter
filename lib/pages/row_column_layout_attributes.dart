@@ -31,7 +31,7 @@ class RowColumnLayoutAttributes extends StatelessWidget {
               ),
               LayoutAttributeSelector(
                 title: 'Main Axis Size',
-                values: ['max', 'min'],
+                values: ['min', 'max'],
                 onChange: onUpdateMainAxisSize,
               )
             ],

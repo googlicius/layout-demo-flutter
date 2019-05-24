@@ -18,7 +18,7 @@ enum LayoutType {
   padding,
   pageView,
   list,
-  silvers,
+  slivers,
   hero,
   nested
 }
@@ -46,8 +46,8 @@ String layoutName(LayoutType layoutType) {
     case LayoutType.list:
       return 'List';
 
-    case LayoutType.silvers:
-      return 'Silvers';
+    case LayoutType.slivers:
+      return 'Slivers';
 
     case LayoutType.hero:
       return 'Hero';
