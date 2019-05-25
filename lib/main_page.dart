@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_layout/pages/baseline_page.dart';
+import 'package:flutter_demo_layout/pages/list_page.dart';
 import 'package:flutter_demo_layout/pages/row_column_page.dart';
 import 'package:flutter_demo_layout/pages/page_view_page.dart';
 import 'package:flutter_demo_layout/standalones/layout_type.dart';
+import 'package:flutter_demo_layout/pages/expanded_page.dart';
+import 'package:flutter_demo_layout/pages/hero_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -52,7 +55,7 @@ class _MainPageState extends State<MainPage> {
           _onLayoutSelected(LayoutType.expanded);
           break;
         case 4:
-          _onLayoutSelected(LayoutType.padding);
+          _onLayoutSelected(LayoutType.key);
           break;
       }
     } else {
@@ -120,6 +123,23 @@ class _MainPageState extends State<MainPage> {
           onLayoutToggle: _onLayoutGrouptToggle,
         );
 
+      case LayoutType.expanded:
+        return ExpandedPage(
+          layoutGroup: _layoutGroup,
+          onLayoutToggle: _onLayoutGrouptToggle,
+        );
+
+      case LayoutType.hero:
+        return HeroPage(
+          layoutGroup: _layoutGroup,
+          onLayoutToggle: _onLayoutGrouptToggle,
+        );
+
+      case LayoutType.list:
+        return ListPage(
+          layoutGroup: _layoutGroup,
+          onLayoutToggle: _onLayoutGrouptToggle,
+        );
       default:
         return null;
     }
@@ -138,26 +158,23 @@ class _MainPageState extends State<MainPage> {
           _buildItem(
               icon: Icons.line_weight, layoutSelection: LayoutType.expanded),
           _buildItem(
-              icon: Icons.format_line_spacing,
-              layoutSelection: LayoutType.padding),
+              icon: Icons.vpn_key,
+              layoutSelection: LayoutType.key),
         ],
         onTap: _onSelectTab,
       );
-    }
-    else {
+    } else {
       return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: [
           _buildItem(
               icon: Icons.view_week, layoutSelection: LayoutType.pageView),
           _buildItem(
-              icon: Icons.format_list_bulleted, layoutSelection: LayoutType.list),
-          _buildItem(
-              icon: Icons.view_day, layoutSelection: LayoutType.slivers),
-          _buildItem(
-              icon: Icons.gradient, layoutSelection: LayoutType.hero),
-          _buildItem(
-              icon: Icons.dashboard, layoutSelection: LayoutType.nested),
+              icon: Icons.format_list_bulleted,
+              layoutSelection: LayoutType.list),
+          _buildItem(icon: Icons.view_day, layoutSelection: LayoutType.slivers),
+          _buildItem(icon: Icons.gradient, layoutSelection: LayoutType.hero),
+          _buildItem(icon: Icons.dashboard, layoutSelection: LayoutType.nested),
         ],
         onTap: _onSelectTab,
       );
