@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_layout/second_page.dart';
 import 'main_page.dart';
 
 void main() => runApp(MyApp());
@@ -19,9 +20,13 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MainPage(),
+        '/second': (context) => SecondPage()
+      }
     );
   }
 }

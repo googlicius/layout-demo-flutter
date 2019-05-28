@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_layout/second_page.dart';
 import 'package:flutter_demo_layout/standalones/layout_type.dart';
 import 'package:flutter_demo_layout/pages/main_app_bar.dart';
 
@@ -22,27 +23,30 @@ class ListPage extends StatelessWidget implements HasLayoutGroup {
         onLayoutToggle: onLayoutToggle,
       ),
       body: Container(
-        child: _buildContent(),
+        child: _buildContent(context),
       ),
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return ListView.builder(
         itemCount: allContacts.length,
         itemBuilder: (BuildContext content, int index) {
           Contact contact = allContacts[index];
-          return ContactListTile(contact);
+          return ContactListTile(contact, () {
+            Navigator.pushNamed(context, '/second');
+          });
         });
   }
 }
 
 class ContactListTile extends ListTile {
-  ContactListTile(Contact contact)
+  ContactListTile(Contact contact, VoidCallback onTap)
       : super(
           title: Text(contact.name),
           subtitle: Text(contact.email),
           leading: CircleAvatar(child: Text(contact.name[0])),
+          onTap: onTap
         );
 }
 
