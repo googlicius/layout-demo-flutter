@@ -33,21 +33,22 @@ class ListPage extends StatelessWidget implements HasLayoutGroup {
         itemCount: allContacts.length,
         itemBuilder: (BuildContext content, int index) {
           Contact contact = allContacts[index];
-          return ContactListTile(contact, () {
-            Navigator.pushNamed(context, '/second');
+
+          return ContactListTile(contact, onTap: () {
+            Navigator.pushNamed(context, '/second',
+                arguments: ScreenArgument(contact: contact));
           });
         });
   }
 }
 
 class ContactListTile extends ListTile {
-  ContactListTile(Contact contact, VoidCallback onTap)
+  ContactListTile(Contact contact, {VoidCallback onTap})
       : super(
-          title: Text(contact.name),
-          subtitle: Text(contact.email),
-          leading: CircleAvatar(child: Text(contact.name[0])),
-          onTap: onTap
-        );
+            title: Text(contact.name),
+            subtitle: Text(contact.email),
+            leading: CircleAvatar(child: Text(contact.name[0])),
+            onTap: onTap);
 }
 
 List<Contact> allContacts = [

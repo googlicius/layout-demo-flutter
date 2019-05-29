@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_layout/pages/list_page.dart' show Contact, allContacts;
 
-@protected
-class Contact {
-  Contact({this.name, this.email});
-  final String name;
-  final String email;
+class ScreenArgument {
+  final Contact contact;
+  ScreenArgument({this.contact});
 }
-
-List<Contact> allContacts = [
-  Contact(name: 'Isa Tusa', email: 'isa.tusa@me.com'),
-  Contact(name: 'Racquel Ricciardi', email: 'racquel.ricciardi@me.com'),
-  Contact(name: 'Teresita Mccubbin', email: 'teresita.mccubbin@me.com'),
-];
 
 class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ScreenArgument screenArgument = ModalRoute.of(context).settings.arguments;
+    String title = screenArgument.contact.name;
+    
     return Scaffold(
       appBar: AppBar(
-        title: Text('Second page'),
+        title: Text(title),
       ),
       body: Container(
         child: ListView.builder(
